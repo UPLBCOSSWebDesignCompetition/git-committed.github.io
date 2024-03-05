@@ -1,0 +1,797 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'AvenueMono';
+  src: url('./assets/fonts/Avenue\ Mono.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NimbusSanL';
+  src: url('./assets/fonts/NimbusSanL-Bol.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NimbusSanL';
+  src: url('./assets/fonts/NimbusSanL-BolIta.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'NimbusSanL';
+  src: url('./assets/fonts/NimbusSanL-Reg.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NimbusSanL';
+  src: url('./assets/fonts/NimbusSanL-RegIta.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+* {
+  margin: 0;
+  font-family: NimbusSansL, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-color);
+  overflow-x: hidden;
+}
+
+:root {
+  --bg-color: rgb(250, 250, 250);
+  --sgd1: #e5243b;
+  --sgd2: #DDA63A;
+  --sgd3: #4C9F38;
+  --sgd4: #C5192D;
+  --sgd5: #FF3A21;
+  --sgd6: #26BDE2;
+  --sgd7: #FCC30B;
+  --sgd8: #A21942;
+  --sgd9: #FD6925;
+  --sgd10: #DD1367;
+  --sgd11: #FD9D24;
+  --sgd12: #BF8B2E;
+  --sgd13: #3F7E44;
+  --sgd14: #0A97D9;
+  --sgd15: #56C02B;
+  --sgd16: #00689D;
+  --sgd17: #19486A;
+}
+
+/* CSS FOR NAVBAR */
+
+.navbar {
+  padding-top: 30px;
+  width: 100vw;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+}
+
+.navbar img {
+  height: 120%;
+}
+
+.navbar .buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 2rem;
+} 
+
+
+.navbar a {
+  font-family: AvenueMono;
+  text-decoration: none;
+  color: black;
+}
+
+/* CSS FOR SCROLLING TEXT */
+.wrapper {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 40px;
+  display: table;
+  text-align: center;
+  transition: all 0.5s ease-in-out;
+  border: 1px solid var(--bg-color);
+}
+
+.wrapper.active {
+  border: 3px solid black;
+}
+
+.marquee {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  animation: marquee 90s linear infinite;
+}
+
+.marquee p {
+  margin-top: 5px;
+  display: inline-block;
+  font-family: AvenueMono;
+  font-size: 3.5rem;
+  font-weight: 800;
+  transition: all 0.2s ease-in-out;
+  color: black;
+}
+
+.marquee.active p {
+  color: white;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* CSS FOR SQUARE COMPONENT */
+
+.gallery {
+  margin-top: 40px;
+  margin-bottom: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  z-index: 0;
+}
+
+.square {
+  display: block;
+  width: calc((100% - 5 * 1rem)/ 6);
+  aspect-ratio: 1/1;
+  position: relative;
+  z-index: 0;
+}
+
+.image-wrapper {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1/1;
+  z-index: 0;
+
+}
+
+.image-wrapper img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, filter 0.1s ease-in-out; 
+  filter: saturate(0);
+  border: 3px solid black;
+  z-index: 1;
+}
+
+.image-wrapper img.default {
+  opacity: 1;
+  z-index: 0;
+
+}
+
+.image-wrapper img.alternative {
+  opacity: 0;
+  z-index: 0;
+
+} 
+
+.square:hover {
+  scale: 105%;
+  border: none;
+}
+
+.square:hover img {
+  filter: saturate(100%);
+}
+
+.square .cursor-square {
+  display: inline-block;
+  position: absolute;
+  width: 250px;
+  height: auto;
+  border-radius: 1rem;
+  z-index: 9999;
+  transform: translateY(-105%);
+  padding: 20px;
+}
+
+/* https://www.youtube.com/watch?v=3HRvb2tLqF4 */
+.glass{
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border:1px solid rgba(255, 255, 255, .18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.cursor-square h2 {
+  font-family: Oswald;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.cursor-square h5 {
+  font-family: Oswald;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.cursor-square p {
+  font-size: 1rem;
+}
+
+/* CSS FOR CAROUSEL */
+
+.solid {
+  margin-top: 300px;
+  margin-bottom: 100px;
+  background-color: #D9D9D9;
+  height: auto;
+  padding-top: 2rem;
+  position: relative;
+  transition: opacity 0.5s ease;
+}
+
+.solid .overflow-number {
+  position: absolute;
+  top: -400px;
+  left: 0;
+  overflow: visible;
+  font-family: Oswald;
+  font-size: 24rem;
+  font-weight: 700;
+  opacity: 0;
+  transition: all .5s;
+  color: black;
+  -webkit-text-fill-color: var(--bg-color);
+  text-shadow:
+       3px 3px 0 black,
+       -1px -1px 0 black,  
+       1px -1px 0 black,
+       -1px 1px 0 black,
+       1px 1px 0 black;
+}
+
+.solid .overflow-number.show {
+  opacity: 1;
+  left: 5%;
+}
+
+.solid .title { 
+  display: inline-block;
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: black;
+  opacity: 0;
+  transition: all 1s;
+  font-weight: 900;
+}
+
+.solid h3 {
+  font-family: AvenueMono;
+  letter-spacing: 3px;
+}
+
+.solid .title.show {
+  opacity: 1;
+  top: -175px;
+}
+
+.solid .button-container {
+  position: absolute;
+  top: -70px;
+  right: 2.5%;
+  display: flex;
+}
+
+.solid .button-container button{
+  font-size: 1.2rem;
+  border: 1px solid gray;
+  border-radius: 2rem;
+  margin: 5px;
+  padding: .5rem;
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.solid .button-container span {
+  font-family: AvenueMono;
+  margin-top:1px;
+}
+
+/* CSS to hide scrollbar */
+/* chrome and chromium based */
+.react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.react-horizontal-scrolling-menu--scroll-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+  /* background-color: var(--bg-color); */
+
+.solid .button-container button:hover{
+  background-color: black;
+  color: white;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.solid .svg-container {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.svg-container .item {
+  max-height: 100%;
+}
+
+.svg-container .item img {
+  width: 90%;
+}
+
+.read-more-button {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.read-more-button button {
+  font-family: AvenueMono;
+  font-size: 1.2rem;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  border-radius: 1rem;
+  margin: 5px;
+  padding: .5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.read-more-button button:hover {
+  background-color: white;
+  color: black;
+}
+
+/* CSS FOR FOOTER */
+
+.footer {
+  height: 500px;
+  background-color: #333333;
+  margin-top: 20px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer hr{
+  width: 95%;
+}
+
+.footer .top {
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  display: flex;
+}
+
+.footer .top .tagline{
+  color: white;
+  width: auto;
+  font-weight: 800;
+  font-size: 3rem;
+  padding-left: 60px;
+}
+
+
+.tagline p {
+  font-family: AvenueMono;
+}
+
+.footer .top .right {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  margin-left: auto;
+  width: 400px;
+}
+
+.right ul{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style-type: none;
+}
+
+.right ul li {
+  font-family: AvenueMono;
+  width: 150px;
+  border: 3px solid white;
+  color: white;
+  font-weight: 600;
+  padding: .8rem;
+  cursor: pointer;
+}
+
+.right .icons {
+  display: flex;
+  color: #808080;
+  font-size: 3rem;
+  gap: 1rem;
+  margin-top: 30px;
+  margin-right: 100px;
+  cursor: pointer;
+}
+
+.footer .bottom {
+  margin-top: 20px;
+  margin-left: 20px;
+  padding: .5rem;
+  width: 95%;
+  display: flex;
+  align-items: center;
+}
+
+.footer .bottom .logo {
+  display: flex;
+  align-items: center;
+}
+
+.footer .bottom .logo img {
+  height: 60px;
+  cursor: pointer;
+}
+
+.footer .bottom .links {
+  margin-left: auto;
+  margin-right: 20px;
+  display: flex;
+  gap: 1.3rem;
+}
+
+.footer .bottom .links a {
+  text-decoration: none;
+  color:white;
+  font-family: AvenueMono;
+  font-weight: 300;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.footer .bottom .links a:hover {
+  color: gray;
+}
+
+.set-two {
+  overflow: hidden;
+}
+
+.hidden {
+  opacity: 0;
+  transition: all 1s;
+}
+
+.show {
+  opacity: 1;
+}
+
+.partner img:last-of-type {
+  padding-left: 0;
+}
+
+.inner {
+  position: relative;
+  width: 200%;
+  overflow: hidden;
+  height: 300px;
+  margin: 50px;
+  margin-left: 0px;
+}
+
+.inner img {
+  filter: grayscale(100%);
+}
+
+.inner img:hover {
+  filter: grayscale(0);
+}
+
+.partner .wrapper {
+  position: relative;
+  display: flex;
+}
+
+h1.title {
+  color: #545F71;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+section {
+  display: flex;
+  animation: swipe 20s linear infinite backwards;
+}
+
+@keyframes swipe {
+  0% {
+    transform: translate(0);
+  }
+
+  100% {
+    transform: translate(-100%);
+  }
+}
+
+/*HEADER STYLE*/
+.header {
+  background-color: white;
+  color: black;
+  text-align: center;
+  margin-top: -30px;
+  height: 300px;
+  display: grid;
+  place-items: center;
+}
+
+.header-title {
+  text-align: center;
+  font-family: 'Helvetica';
+  font-size: 5rem;
+  margin-bottom: 10px;
+  margin-top: 50px;
+
+  font-family: 'AvenueMono';
+  font-weight: 800;
+  text-transform: lowercase;
+}
+
+.header-description{
+  margin-top: 10px;
+  font-family: 'Helvetica';
+  font-size: medium;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 100px;
+  font-size: 1vw;
+}
+
+
+/*HISTORY CARDS DESIGN*/
+/*https://www.youtube.com/watch?v=yfg9ChTmuKM*/
+/*https://www.youtube.com/watch?v=tF3RE5CGt9U&t=381s*/
+
+.history {
+  display:inline-grid;
+  grid-template-columns: auto auto auto auto;
+  align-items: center;
+  justify-items: center;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 150px;
+}
+
+.historycard {
+  position: relative;
+  
+}
+
+.history-image{
+  display:block;
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: center;
+  height: auto;
+  filter: grayscale(1.0);
+}
+
+.history-content{
+  position:absolute;
+  bottom: 0;
+  left: 0;
+  right:0;
+  background-color: rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  width: 100%;
+  transition: 0.3s ease-in;
+  height: 0;
+  font-family: 'Helvetica';
+}
+
+.historycard:hover .history-content{
+  height: 100%;
+}
+
+.historycard:hover .history-image{
+  filter: brightness(65%);
+}
+
+
+.history-title{
+  width: 100%;
+  margin-top: 10%;
+  color: white; 
+  font-size: 4vw;
+  position: absolute;
+  text-align: center;
+  font-family: 'AvenueMono';
+  text-transform: lowercase;
+}
+
+.history-description{
+  text-align: justify;
+  font-family: "Helvetica";
+  color: white;
+  font-size: 1vw;
+  margin: 40% 0 0 15%;
+  width: 70%;
+  line-height: 1.5em;
+  font-family: 'Helvetica';
+}
+
+/*PROGRESS CARDS*/
+.progress-container {
+  display: flex;
+  justify-content: center;
+}
+
+.progress {
+  display:inline-grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 20px;
+  align-items: center;
+  justify-items: center;
+  /* margin-left: 10%; */
+  margin-top: 50px;
+  margin-bottom: 10%; 
+}
+
+.progresscard{
+  width: 300px; 
+  overflow: hidden;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.progresscard:hover{
+  transform: scale(1.01);
+}
+
+.progresscard:hover .progress-image{
+  filter: none;
+}
+
+.progress-top{
+  margin-top:10px;
+  margin-bottom: 0.5rem;
+  font-size: 15px;
+  margin-left: 10px;
+}
+.progress-image{
+  overflow: hidden;
+  height:150px; 
+  width: 100%;
+  filter: grayscale(0.5);
+}
+
+.progress-description{
+  margin: 1rem;
+  margin-top: 0.5 rem;
+  margin-left: 0rem;
+  font-size: 15px;
+  margin-left: 10px;
+  font-family: "Helvetica";
+  text-align: justify;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 25px;
+  max-height: 500px;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+
+.progress-title{
+  margin-bottom: 0.5rem;
+  font-size: 25px;
+  margin-left: 10px;
+  color:#333333;
+  font-weight: bold;
+  font-family: 'AvenueMono';
+  text-transform: lowercase;
+}
+
+.progress-author{
+  margin-bottom: 0.5rem;
+  font-size: 15px;
+  margin-left: 10px;
+  font-family: "Helvetica";
+}
+
+.button-position {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.progress-button{
+  padding: 0.5 rem;
+  border: none;
+  transition: 0.2s;
+  margin-bottom: 0.5rem;
+}
+
+
+.button-label {
+  text-transform: uppercase;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'AvenueMono';
+  text-transform: lowercase;
+}
+
+.button-label:hover{
+  color: #189cfc;
+}

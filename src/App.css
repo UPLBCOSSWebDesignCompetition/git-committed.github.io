@@ -1,0 +1,35 @@
+.title {
+    margin-top: 20px;
+    font-size: 5em;
+    text-align: center;
+    font-family: "Helvetica";
+    color: black;
+}
+
+.subtitle {
+    margin-top: 10px;
+    font-size: 5em;
+    text-align: center;
+    font-family: "Helvetica";
+    color: black;
+}
+
+.date{
+    color:black,
+}
+
+#content {
+    font-family: "Helvetica";
+    text-align: justify;
+}
+
+h3{
+    font-family: "Helvetica";
+    padding-top: 0.10em;
+}
+
+.tracker{
+    box-shadow: '1px 2px 9px #F4AAB9';
+}
+
+
